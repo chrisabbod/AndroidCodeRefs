@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidCodeRefs"
 include(":app")
- 
+include(":cupcake")
