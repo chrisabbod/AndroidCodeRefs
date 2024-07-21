@@ -39,38 +39,8 @@ fun StartOrderScreen(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small))
-        ) {
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_medium)))
-            Image(
-                painter = painterResource(id = R.drawable.cupcake),
-                contentDescription = null,
-                modifier = Modifier.width(300.dp)
-            )
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_medium)))
-            Text(
-                text = stringResource(id = R.string.order_cupcakes),
-                style = MaterialTheme.typography.headlineSmall
-            )
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_medium)))
-        }
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(
-                dimensionResource(id = R.dimen.padding_medium)
-            )
-        ) {
-            quantityOptions.forEach { item ->
-                SelectQuantityButton(
-                    labelResourceId = item.first,
-                    onClick = { /*TODO*/ }
-                )
-            }
-        }
+        CupcakeHeadline()
+        CupcakeBody(quantityOptions = quantityOptions)
     }
 }
 
@@ -96,6 +66,23 @@ fun CupcakeHeadline() {
     }
 }
 
+@Composable
+fun CupcakeBody(quantityOptions: List<Pair<Int, Int>>) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(
+            dimensionResource(id = R.dimen.padding_medium)
+        )
+    ) {
+        quantityOptions.forEach { item ->
+            SelectQuantityButton(
+                labelResourceId = item.first,
+                onClick = { /*TODO*/ }
+            )
+        }
+    }
+}
 /**
  * Customizable button composable that displays the [labelResourceId]
  * and triggers [onClick] lambda when this composable is clicked
