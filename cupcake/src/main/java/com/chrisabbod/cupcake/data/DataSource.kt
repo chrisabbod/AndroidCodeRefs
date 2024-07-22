@@ -1,5 +1,7 @@
 package com.chrisabbod.cupcake.data
 
+import android.content.Context
+import androidx.annotation.StringRes
 import com.chrisabbod.cupcake.R
 
 object DataSource {
@@ -16,4 +18,10 @@ object DataSource {
         Pair(R.string.six_cupcakes, 6),
         Pair(R.string.twelve_cupcakes, 12)
     )
+
+    fun mapIdToString(context: Context, idList: List<Int>) : List<String> {
+        return idList.map { id ->
+            context.resources.getString(id)
+        }
+    }
 }

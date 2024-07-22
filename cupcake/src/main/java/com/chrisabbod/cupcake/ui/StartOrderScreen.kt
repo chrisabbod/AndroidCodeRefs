@@ -1,4 +1,4 @@
-package com.chrisabbod.cupcake
+package com.chrisabbod.cupcake.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.chrisabbod.cupcake.R
 import com.chrisabbod.cupcake.data.DataSource
 import com.chrisabbod.cupcake.ui.theme.CupcakeTheme
 

@@ -1,4 +1,4 @@
-package com.chrisabbod.cupcake
+package com.chrisabbod.cupcake.ui
 
 import android.icu.util.Calendar
 import androidx.lifecycle.ViewModel
