@@ -105,7 +105,9 @@ fun CupcakeApp(
 //                    options = DataSource.mapIdToString(context, DataSource.flavors) // TODO: See if this works later, just experimenting
                     options = DataSource.flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setFlavor(it) },
-                    onCancelButtonClicked = {},
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(viewModel, navController)
+                    },
                     onNextButtonClicked = { navController.navigate(CupcakeScreen.Pickup.name) },
                     modifier = Modifier.fillMaxHeight()
                 )
@@ -114,7 +116,9 @@ fun CupcakeApp(
                 SelectOptionsScreen(
                     subtotal = uiState.price,
                     onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
-                    onCancelButtonClicked = {},
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(viewModel, navController)
+                    },
                     options = uiState.pickupOptions,
                     onSelectionChanged = { viewModel.setDate(it) }, // TODO: Play around with this concept to learn more and understand it better
                     modifier = Modifier.fillMaxHeight()
@@ -123,7 +127,9 @@ fun CupcakeApp(
             composable(route = CupcakeScreen.Summary.name) {
                 OrderSummaryScreen(
                     orderUiState = uiState,
-                    onCancelButtonClicked = {},
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(viewModel, navController)
+                    },
                     onSendButtonClicked = { subject: String, summary: String ->
 
                     },
@@ -132,6 +138,14 @@ fun CupcakeApp(
             }
         }
     }
+}
+
+private fun cancelOrderAndNavigateToStart(
+    viewModel: OrderViewModel,
+    navController: NavHostController
+) {
+    viewModel.resetOrder()
+    navController.popBackStack(CupcakeScreen.Start.name, inclusive = false)
 }
 
 @Preview(showSystemUi = true, showBackground = true)

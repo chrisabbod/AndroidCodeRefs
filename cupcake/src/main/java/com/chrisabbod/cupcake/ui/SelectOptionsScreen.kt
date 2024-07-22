@@ -93,7 +93,7 @@ fun SelectOptionsScreen(
             // Cancel Button
             OutlinedButton(
                 modifier = Modifier.weight(1f),
-                onClick = { onCancelButtonClicked }
+                onClick = { onCancelButtonClicked() }
             ) {
                 Text(stringResource(id = R.string.cancel))
             }
