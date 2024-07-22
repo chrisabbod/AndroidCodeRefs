@@ -83,6 +83,7 @@ fun CupcakeBody(quantityOptions: List<Pair<Int, Int>>) {
         }
     }
 }
+
 /**
  * Customizable button composable that displays the [labelResourceId]
  * and triggers [onClick] lambda when this composable is clicked
