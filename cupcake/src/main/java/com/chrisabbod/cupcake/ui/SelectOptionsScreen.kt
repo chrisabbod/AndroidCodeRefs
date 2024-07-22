@@ -37,6 +37,8 @@ fun SelectOptionsScreen(
     subtotal: String,
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
+    onCancelButtonClicked: () -> Unit = {},
+    onNextButtonClicked: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
@@ -88,18 +90,19 @@ fun SelectOptionsScreen(
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium)),
             verticalAlignment = Alignment.Bottom
         ) {
+            // Cancel Button
             OutlinedButton(
                 modifier = Modifier.weight(1f),
-                onClick = { /*TODO*/
-                }
+                onClick = { onCancelButtonClicked }
             ) {
                 Text(stringResource(id = R.string.cancel))
             }
+            // Next Button
             Button(
                 modifier = Modifier.weight(1f),
                 // the button is enabled when the user makes a selection
                 enabled = selectedValue.isNotEmpty(),
-                onClick = {}
+                onClick = { onNextButtonClicked() }
             ) {
                 Text(stringResource(id = R.string.next))
             }

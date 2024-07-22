@@ -33,7 +33,7 @@ import com.chrisabbod.cupcake.ui.OrderViewModel
 import com.chrisabbod.cupcake.ui.SelectOptionsScreen
 import com.chrisabbod.cupcake.ui.StartOrderScreen
 
-enum class CupcakeScreen() {
+enum class CupcakeScreen {
     Start,
     Flavor,
     Pickup,
@@ -89,6 +89,10 @@ fun CupcakeApp(
             composable(route = CupcakeScreen.Start.name) {
                 StartOrderScreen(
                     quantityOptions = DataSource.quantityOptions,
+                    onNextButtonClicked = {
+                        viewModel.setQuantity(it)
+                        navController.navigate(CupcakeScreen.Flavor.name)
+                    },
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(id = R.dimen.padding_medium))
@@ -98,15 +102,19 @@ fun CupcakeApp(
                 val context = LocalContext.current
                 SelectOptionsScreen(
                     subtotal = uiState.price,
-//                    options = DataSource.mapIdToString(context, DataSource.flavors)
+//                    options = DataSource.mapIdToString(context, DataSource.flavors) // TODO: See if this works later, just experimenting
                     options = DataSource.flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setFlavor(it) },
+                    onCancelButtonClicked = {},
+                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Pickup.name) },
                     modifier = Modifier.fillMaxHeight()
                 )
             }
             composable(route = CupcakeScreen.Pickup.name) {
                 SelectOptionsScreen(
                     subtotal = uiState.price,
+                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
+                    onCancelButtonClicked = {},
                     options = uiState.pickupOptions,
                     onSelectionChanged = { viewModel.setDate(it) }, // TODO: Play around with this concept to learn more and understand it better
                     modifier = Modifier.fillMaxHeight()
@@ -115,6 +123,10 @@ fun CupcakeApp(
             composable(route = CupcakeScreen.Summary.name) {
                 OrderSummaryScreen(
                     orderUiState = uiState,
+                    onCancelButtonClicked = {},
+                    onSendButtonClicked = { subject: String, summary: String ->
+
+                    },
                     modifier = Modifier.fillMaxHeight()
                 )
             }

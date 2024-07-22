@@ -34,6 +34,7 @@ import com.chrisabbod.cupcake.ui.theme.CupcakeTheme
 @Composable
 fun StartOrderScreen(
     quantityOptions: List<Pair<Int, Int>>,
+    onNextButtonClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -41,7 +42,7 @@ fun StartOrderScreen(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         CupcakeHeadline()
-        CupcakeBody(quantityOptions = quantityOptions)
+        CupcakeBody(quantityOptions = quantityOptions, onNextButtonClicked)
     }
 }
 
@@ -68,7 +69,10 @@ fun CupcakeHeadline() {
 }
 
 @Composable
-fun CupcakeBody(quantityOptions: List<Pair<Int, Int>>) {
+fun CupcakeBody(
+    quantityOptions: List<Pair<Int, Int>>,
+    onNextButtonClicked: (Int) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -79,7 +83,7 @@ fun CupcakeBody(quantityOptions: List<Pair<Int, Int>>) {
         quantityOptions.forEach { item ->
             SelectQuantityButton(
                 labelResourceId = item.first,
-                onClick = { /*TODO*/ }
+                onClick = { onNextButtonClicked(item.second) }
             )
         }
     }
@@ -109,6 +113,7 @@ fun StartOrderPreview() {
     CupcakeTheme {
         StartOrderScreen(
             quantityOptions = DataSource.quantityOptions,
+            onNextButtonClicked = {},
             modifier = Modifier
                 .fillMaxSize()
                 .padding(dimensionResource(id = R.dimen.padding_medium))

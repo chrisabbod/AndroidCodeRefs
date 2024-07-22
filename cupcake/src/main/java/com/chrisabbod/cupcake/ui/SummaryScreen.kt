@@ -36,6 +36,8 @@ import com.chrisabbod.cupcake.ui.theme.CupcakeTheme
 @Composable
 fun OrderSummaryScreen(
     orderUiState: OrderUiState,
+    onCancelButtonClicked: () -> Unit,
+    onSendButtonClicked: (String, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val resources = LocalContext.current.resources
@@ -89,15 +91,17 @@ fun OrderSummaryScreen(
             Column(
                 verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small))
             ) {
+                // Send Button
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { /*TODO*/ }
+                    onClick = { onSendButtonClicked(newOrder, orderSummary) }
                 ) {
                     Text(stringResource(id = R.string.send))
                 }
+                // Cancel Button
                 OutlinedButton(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { /*TODO*/ }
+                    onClick = { onCancelButtonClicked }
                 ) {
                     Text(stringResource(id = R.string.cancel))
                 }
@@ -111,20 +115,13 @@ fun OrderSummaryScreen(
 @Composable
 fun OrderSummaryPreview() {
     CupcakeTheme {
-        Scaffold(
-            topBar = {
-                CupcakeAppBar(
-                    canNavigateBack = false,
-                    navigateUp = { /*TODO*/ }
-                )
-            }
-        ) { innerPadding ->
-            OrderSummaryScreen(
-                orderUiState = OrderUiState(0, "Test", "Test", "$300.00"),
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(innerPadding)
-            )
-        }
+        OrderSummaryScreen(
+            orderUiState = OrderUiState(
+                0, "Test", "Test", "$300.00"
+            ),
+            onCancelButtonClicked = {},
+            onSendButtonClicked = { subject: String, summary: String -> },
+            modifier = Modifier.fillMaxHeight()
+        )
     }
 }
