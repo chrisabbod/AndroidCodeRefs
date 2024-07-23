@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cupcake">
         <activity
-            android:name=".MainActivity"
+            android:name=".CupcakeActivity"
             android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.Cupcake">
