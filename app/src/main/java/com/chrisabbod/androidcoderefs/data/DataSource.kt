@@ -12,7 +12,7 @@ object DataSource {
     val moduleList = listOf(
         ModuleData(
             "Cupcake",
-            "Topics: Navigation, App Bar & Back Navigation, creating a Chooser, radio buttons, loops to create rows in UI",
+            "Topics: \n- Navigation\n- App Bar & Back Navigation\n- Theming \n- Creating a Chooser\n- Radio Buttons\n- Loops to Create Rows in UI",
         ),
         ModuleData(
             "Todo List",
