@@ -1,5 +1,6 @@
 package com.chrisabbod.androidcoderefs.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,13 +23,13 @@ fun ListItem(item: ModuleData) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { /* clickable modifier makes the button ripple when clicked */ },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = item.name, style = MaterialTheme.typography.titleLarge)
@@ -41,5 +42,5 @@ fun ListItem(item: ModuleData) {
 @Preview
 @Composable
 fun ListItemPreview() {
-    ListItem(DataSource.moduleList.get(0))
+    ListItem(item = DataSource.moduleList[0])
 }

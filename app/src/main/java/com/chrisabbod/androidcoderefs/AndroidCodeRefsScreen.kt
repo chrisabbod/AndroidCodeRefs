@@ -29,7 +29,6 @@ import com.chrisabbod.androidcoderefs.ui.theme.AndroidCodeRefsTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AndroidCodeRefsScreen() {
-
     Scaffold(
         topBar = { AndroidCodeRefsAppBar() }, // TODO: Make better theme including color matching for system bar
         content = { AndroidCodeRefsMainList() }
@@ -52,11 +51,11 @@ fun AndroidCodeRefsAppBar() {
             color = Color.Black
         )
     }
-
 }
 
 @Composable
 fun AndroidCodeRefsMainList() {
+    //TODO: Fix top of list being cut off behind app bar in landscape
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
