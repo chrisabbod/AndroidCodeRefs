@@ -92,7 +92,6 @@ fun CupcakeApp(
             )
         }
     ) { innerPadding ->
-        backStackEntry
         val uiState by viewModel.uiState.collectAsState()
 
         NavHost(
