@@ -19,12 +19,15 @@ import com.chrisabbod.androidcoderefs.data.DataSource
 import com.chrisabbod.androidcoderefs.data.ModuleData
 
 @Composable
-fun ListItem(item: ModuleData) {
+fun ListItem(
+    item: ModuleData,
+    onClick: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { /* clickable modifier makes the button ripple when clicked */ },
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
@@ -42,5 +45,5 @@ fun ListItem(item: ModuleData) {
 @Preview
 @Composable
 fun ListItemPreview() {
-    ListItem(item = DataSource.moduleList[0])
+    ListItem(item = DataSource.moduleList[0], onClick = {})
 }
