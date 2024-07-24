@@ -73,7 +73,6 @@ fun AndroidCodeRefsMainList() {
             ListItem(
                 item = item,
                 onClick = {
-                    Toast.makeText(context, "Clicked ${item.name}", Toast.LENGTH_SHORT).show()
                     when(item.name){
                         "Cupcake" -> launchCupcakeModule(context)
                     }
