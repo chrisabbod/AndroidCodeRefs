@@ -115,7 +115,6 @@ fun CupcakeApp(
                 val context = LocalContext.current
                 SelectOptionsScreen(
                     subtotal = uiState.price,
-//                    options = DataSource.mapIdToString(context, DataSource.flavors) // TODO: See if this works later, just experimenting
                     options = DataSource.flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setFlavor(it) },
                     onCancelButtonClicked = {
@@ -154,6 +153,21 @@ fun CupcakeApp(
     }
 }
 
+/**
+ * Initiates an intent to share order details via text.
+ *
+ * This function constructs an intent for sending a plain text summary of an order. It is intended
+ * to be used in the context of the `CupcakeScreen` but is passed to and invoked in `SummaryScreen`.
+ * The function captures the local `Context` from its defining location (`CupcakeScreen`), allowing it
+ * to use this `Context` to start activities, even when called from another composable (`SummaryScreen`).
+ *
+ * The lambda captures the `Context` due to Kotlin's closure capabilities, which means it retains
+ * access to the `Context` after being passed to other scopes or composables.
+ *
+ * @param context The environment context captured from `CupcakeScreen` where the function is defined.
+ * @param subject The subject line for the sharing intent.
+ * @param summary The text content (order summary) to be shared.
+ */
 private fun shareOrder(context: Context, subject: String, summary: String) {
     val intent =
         Intent(Intent.ACTION_SEND).apply { // TODO: Take notes on .apply() (what type of method is this? There are 5 or 6, learn about them again)
